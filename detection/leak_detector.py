@@ -1,9 +1,14 @@
+"""
+Leak Detection Module
+Combines preprocessing and YOLO inference
+"""
 import torch
 import cv2
 from preprocessing.leak_preprocessing import preprocess_leak
 
+# Load model once at module level
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='models/leak_detection.pt', force_reload=False)
-model.conf = 0.1
+model.conf = 0.1 # our model recommendation
 
 def detect_leak(image):
     # Apply preprocessing
