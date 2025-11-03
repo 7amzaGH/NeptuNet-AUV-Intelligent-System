@@ -1,154 +1,142 @@
 """
-Motion Stabilization with PID Control
-Maintains stable orientation using IMU feedback
+Path Planning and Search Behavior
+Handles pipeline loss and search patterns
 """
 
-import time
 import numpy as np
+import time
 from controller import ControlCommand
 
 
-class PIDController:
+class PathPlanner:
     """
-    Standard PID controller implementation.
+    State machine for navigation behavior.
+    Manages transitions between SEARCHING, FOLLOWING, and LOST states.
     """
     
-    def __init__(self, kp=0.5, ki=0.1, kd=0.2, output_limit=1.0):
-        self.kp = kp
-        self.ki = ki
-        self.kd = kd
-        self.output_limit = output_limit
+    def __init__(self, lost_threshold=30):
+        self.state = "SEARCHING"
+        self.lost_counter = 0
+        self.lost_threshold = lost_threshold
         
-        self.integral = 0.0
-        self.prev_error = 0.0
-        self.prev_time = time.time()
+        self.search_start_time = time.time()
         
-    def update(self, error):
+    def update_state(self, detection_found):
         """
-        Calculate control output.
+        Update state based on detection status.
         
         Args:
-            error: Difference between setpoint and current value
+            detection_found: True if pipeline detected in current frame
             
         Returns:
-            Control signal
+            Current state string
         """
-        current_time = time.time()
-        dt = current_time - self.prev_time
-        if dt <= 0:
-            dt = 0.01
+        if detection_found:
+            self.state = "FOLLOWING"
+            self.lost_counter = 0
+        else:
+            self.lost_counter += 1
+            
+            if self.lost_counter > self.lost_threshold:
+                self.state = "LOST"
+            elif self.state == "FOLLOWING":
+                self.state = "SEARCHING"
         
-        # PID terms
-        p_term = self.kp * error
-        
-        self.integral += error * dt
-        self.integral = np.clip(self.integral, -10, 10)  # anti-windup
-        i_term = self.ki * self.integral
-        
-        d_term = self.kd * (error - self.prev_error) / dt
-        
-        output = p_term + i_term + d_term
-        output = np.clip(output, -self.output_limit, self.output_limit)
-        
-        self.prev_error = error
-        self.prev_time = current_time
-        
-        return output
+        return self.state
     
-    def reset(self):
-        """Reset internal state."""
-        self.integral = 0.0
-        self.prev_error = 0.0
-        self.prev_time = time.time()
-
-
-class MotionController:
-    """
-    High-level motion control with attitude stabilization.
-    Uses PID feedback from IMU to maintain level orientation.
-    """
-    
-    def __init__(self):
-        # PID controllers for each axis
-        self.pid_roll = PIDController(kp=0.5, ki=0.1, kd=0.2)
-        self.pid_pitch = PIDController(kp=0.5, ki=0.1, kd=0.2)
-        self.pid_yaw = PIDController(kp=0.3, ki=0.05, kd=0.15)
-        self.pid_depth = PIDController(kp=1.0, ki=0.2, kd=0.5)
-        
-        # Target orientation (level)
-        self.target_roll = 0.0
-        self.target_pitch = 0.0
-        self.target_yaw = 0.0
-        
-    def stabilize(self, cmd, imu_data, depth_data):
+    def get_search_command(self):
         """
-        Apply stabilization corrections to control commands.
+        Generate search pattern when pipeline is not visible.
+        Uses sweeping motion to relocate pipeline.
+        
+        Returns:
+            ControlCommand for search behavior
+        """
+        cmd = ControlCommand()
+        
+        # Slow forward motion with oscillating rotation
+        cmd.surge = 0.2
+        
+        search_time = time.time() - self.search_start_time
+        cmd.yaw = 0.3 * np.sin(search_time * 0.5)
+        
+        return cmd
+    
+    def compute_waypoint_heading(self, current_pos, waypoint):
+        """
+        Calculate required heading to reach waypoint.
         
         Args:
-            cmd: Raw ControlCommand from pipeline controller
-            imu_data: dict with 'roll', 'pitch', 'yaw' in degrees
-            depth_data: dict with 'depth' and 'target_depth'
+            current_pos: (x, y) in meters
+            waypoint: (x, y) target position
             
         Returns:
-            Stabilized ControlCommand
+            Heading in degrees [0, 360)
         """
-        stabilized = ControlCommand()
+        dx = waypoint[0] - current_pos[0]
+        dy = waypoint[1] - current_pos[1]
         
-        # Attitude stabilization
-        roll_error = self.target_roll - imu_data['roll']
-        roll_correction = self.pid_roll.update(roll_error)
+        target_heading = np.degrees(np.arctan2(dy, dx))
         
-        pitch_error = self.target_pitch - imu_data['pitch']
-        pitch_correction = self.pid_pitch.update(pitch_error)
+        if target_heading < 0:
+            target_heading += 360
         
-        stabilized.sway = cmd.sway - roll_correction * 0.3
-        stabilized.surge = cmd.surge - pitch_correction * 0.3
-        
-        # Heading control
-        yaw_error = self._normalize_angle(self.target_yaw - imu_data['yaw'])
-        yaw_correction = self.pid_yaw.update(yaw_error)
-        stabilized.yaw = cmd.yaw + yaw_correction
-        
-        # Depth control
-        depth_error = depth_data['target_depth'] - depth_data['depth']
-        depth_correction = self.pid_depth.update(depth_error)
-        stabilized.heave = cmd.heave + depth_correction
-        
-        # Clip outputs
-        stabilized.surge = np.clip(stabilized.surge, -1.0, 1.0)
-        stabilized.sway = np.clip(stabilized.sway, -1.0, 1.0)
-        stabilized.heave = np.clip(stabilized.heave, -1.0, 1.0)
-        stabilized.yaw = np.clip(stabilized.yaw, -1.0, 1.0)
-        
-        return stabilized
+        return target_heading
     
-    def set_target_heading(self, yaw):
-        """Set desired heading angle in degrees."""
-        self.target_yaw = yaw
+    def get_distance_to_waypoint(self, current_pos, waypoint):
+        """Calculate Euclidean distance to waypoint."""
+        dx = waypoint[0] - current_pos[0]
+        dy = waypoint[1] - current_pos[1]
+        return np.sqrt(dx**2 + dy**2)
     
-    def _normalize_angle(self, angle):
-        """Normalize angle to [-180, 180] range."""
-        while angle > 180:
-            angle -= 360
-        while angle < -180:
-            angle += 360
-        return angle
+    def is_waypoint_reached(self, current_pos, waypoint, tolerance=1.0):
+        """
+        Check if within acceptance radius of waypoint.
+        
+        Args:
+            current_pos: Current (x, y) position
+            waypoint: Target (x, y) position
+            tolerance: Acceptance radius in meters
+            
+        Returns:
+            True if waypoint reached
+        """
+        distance = self.get_distance_to_waypoint(current_pos, waypoint)
+        return distance < tolerance
 
 """
 if __name__ == "__main__":
     from controller import PipelineController
     
+    planner = PathPlanner(lost_threshold=30)
     controller = PipelineController()
-    motion = MotionController()
     
-    # Test with tilted AUV
-    bbox = [200, 150, 400, 350]
-    imu = {'roll': 5.0, 'pitch': -3.0, 'yaw': 90.0}
-    depth = {'depth': 2.3, 'target_depth': 2.0}
+    print("Testing state transitions:")
     
-    raw_cmd = controller.compute_control(bbox, depth)
-    print(f"Raw: surge={raw_cmd.surge:.2f}, sway={raw_cmd.sway:.2f}")
+    detections = [
+        (1, True, "Pipeline visible"),
+        (2, True, "Following"),
+        (3, False, "Lost detection"),
+        (4, False, "Searching..."),
+        (5, False, "Still searching..."),
+    ]
     
-    stable_cmd = motion.stabilize(raw_cmd, imu, depth)
-    print(f"Stabilized: surge={stable_cmd.surge:.2f}, sway={stable_cmd.sway:.2f}")
+    for frame, detected, note in detections:
+        state = planner.update_state(detected)
+        print(f"Frame {frame}: {note} -> State: {state}")
+        
+        if state == "LOST":
+            search_cmd = planner.get_search_command()
+            print(f"  Search command: surge={search_cmd.surge:.2f}, yaw={search_cmd.yaw:.2f}")
+    
+    print("\nTesting waypoint navigation:")
+    current = (0.0, 0.0)
+    waypoint = (10.0, 5.0)
+    
+    heading = planner.compute_waypoint_heading(current, waypoint)
+    distance = planner.get_distance_to_waypoint(current, waypoint)
+    reached = planner.is_waypoint_reached(current, waypoint)
 """
+    
+    print(f"Current: {current}, Target: {waypoint}")
+    print(f"Heading: {heading:.1f}°, Distance: {distance:.2f}m, Reached: {reached}")
