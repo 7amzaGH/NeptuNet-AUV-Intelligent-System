@@ -494,7 +494,9 @@ The project also benefited from research experience at the **Silesian University
 
 ## License
 
-This repository is released under the MIT License.
+The source code in this repository is released under the MIT License.
+
+Project documents, thesis material, posters, official recognition documents, logos, datasets, and third-party resources are not automatically covered by the MIT software license. Their reuse may require proper citation, permission, or respect of the license stated in the corresponding source.
 
 See [LICENSE](LICENSE) for details.
 
