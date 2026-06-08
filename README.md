@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/neptunet_logo.png" alt="NeptuNet Logo" width="190"/>
+<img src="assets/neptunet_logo.png" alt="NeptuNet Logo" width="300"/>
 
 # NeptuNet
 
@@ -18,11 +18,11 @@
 
 <br/>
 
-🧠 [Pipeline Perception](https://github.com/7amzaGH/Underwater-Pipeline-Geometric-Perception) &nbsp;·&nbsp;
-🫧 [Bubble Monitoring](https://github.com/7amzaGH/TUBLEX-Bubble-Plume-Analysis) &nbsp;·&nbsp;
-🌊 [Leak Confirmation](https://github.com/7amzaGH/PDTS-Underwater-Gas-Leak-Perception) &nbsp;·&nbsp;
-📄 [Master Thesis](assets/thesis/NeptuNet_Master_Thesis.pdf) &nbsp;·&nbsp;
-🖼️ [Research Poster](assets/poster/neptunet_poster.pdf)
+★ [Pipeline Perception](https://github.com/7amzaGH/Underwater-Pipeline-Geometric-Perception) &nbsp;·&nbsp;
+★ [Bubble Monitoring](https://github.com/7amzaGH/TUBLEX-Bubble-Plume-Analysis) &nbsp;·&nbsp;
+★ [Leak Confirmation](https://github.com/7amzaGH/Underwater-Leak-Geometric-Perception) &nbsp;·&nbsp;
+★ [Master Thesis](docs/NeptuNet_Master_Thesis.pdf) &nbsp;·&nbsp;
+★ [Research Poster](poster/neptunet_poster.pdf)
 
 <br/>
 
@@ -77,7 +77,7 @@ The project positions underwater inspection as an **embedded perception problem*
 ## Framework Architecture
 
 <p align="center">
-  <img src="assets/neptunet_architecture.png" alt="NeptuNet Hierarchical Perception Architecture" width="850"/>
+  <img src="assets/neptunet_architecture.jpg" alt="NeptuNet Hierarchical Perception Architecture" width="850"/>
 </p>
 
 NeptuNet follows a context-suspicion-confirmation structure:
@@ -207,7 +207,7 @@ Datasets, PDTS implementation, segmentation training, deployment evaluation, geo
 ## Resource-Aware Operation
 
 <p align="center">
-  <img src="assets/figures/resource_aware_logic.png" alt="NeptuNet Resource-Aware Logic" width="850"/>
+  <img src="assets/resource_aware_logic.jpg" alt="NeptuNet Resource-Aware Logic" width="850"/>
 </p>
 
 NeptuNet is designed around conditional computational activation.
@@ -371,9 +371,9 @@ Publication links and paper-specific citation entries are maintained inside the 
 ## Innovative Project Label
 
 <p align="center">
-  <img src="assets/label.png" alt="Innovative Project Label Badge" width="170"/>
+  <img src="assets/label.png" alt="Innovative Project Label Badge" width="250"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="assets/Ministerial_Committee_logo.png" alt="Ministerial Committee Logo" width="170"/>
+  <img src="assets/Ministerial_Committee_logo.png" alt="Ministerial Committee Logo" width="250"/>
 </p>
 
 NeptuNet was awarded the **Innovative Project Label** in Algeria, recognizing its innovation potential in underwater AI, embedded perception, and intelligent inspection technologies.
@@ -381,7 +381,7 @@ NeptuNet was awarded the **Innovative Project Label** in Algeria, recognizing it
 This recognition was granted through the national innovation and startup support framework under the Ministry of Knowledge Economy, Startups and Micro-enterprises.
 
 <p align="center">
-  <a href="docs/innovative_project_label.pdf">
+  <a href="docs/neptunet_innovative_project_label.pdf">
     <img src="https://img.shields.io/badge/View%20Official%20Document-PDF-red.svg" alt="View Official Document"/>
   </a>
 </p>
@@ -463,6 +463,7 @@ If you use the NeptuNet framework, please cite the project and the corresponding
 
 he original academic thesis that introduced the NeptuNet framework can be cited as:
 
+```bibtex
 @mastersthesis{ghitri2025neptunet_thesis, 
   title = {NeptuNet: A Lightweight Vision-Based Perception System for Underwater Gas Pipeline Inspection}, 
   author = {Ghitri, Hamza}, 
@@ -470,7 +471,7 @@ he original academic thesis that introduced the NeptuNet framework can be cited 
   year = {2025}, 
   type = {Master's Thesis} 
 }
-
+```
 For module-specific methods, datasets, or experiments, please cite the corresponding pipeline, bubble-monitoring, and leak-confirmation papers when they are available.
 
 ---
@@ -485,8 +486,10 @@ The thesis was supervised by:
 - **Dr. BEMMOUSSAT Chemseddine**
 
 NeptuNet was also awarded the **Innovative Startup Project Label** under **Ministerial Decision 1275** in Algeria.
+- **EL HADJ MIMOUNE Mourad** was part of the startup project team.
 
 The project also benefited from research experience at the **Silesian University of Technology** and from open-source tools and datasets used for underwater computer vision, embedded AI, and explainable machine learning.
+
 ---
 
 ## License
@@ -499,6 +502,6 @@ See [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**NeptuNet — Lightweight embedded perception for underwater gas pipeline inspection**
+**NeptuNet : Lightweight embedded perception Framework for Underwater Gas Pipeline Inspection**
 
 </div>
