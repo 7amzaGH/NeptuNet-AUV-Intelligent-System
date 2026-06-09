@@ -1,0 +1,11 @@
+window,system_state,level1_active,pipeline_detected,center_offset_px,orientation_deg,pipeline_direction,level2_active,bubble_activity,suspicion_score,level3_active,plume_detected,plume_centroid,probable_source,propagation_direction
+1,NORMAL_MONITORING,True,True,-5.0,1.0,STRAIGHT,True,True,0.09,False,False,,,
+2,NORMAL_MONITORING,True,True,-6.1,1.7,STRAIGHT,True,True,0.13,False,False,,,
+3,NORMAL_MONITORING,True,True,-8.5,2.9,RIGHT,True,True,0.28,False,False,,,
+4,NORMAL_MONITORING,True,True,-11.0,4.3,RIGHT,True,True,0.52,False,False,,,
+5,SUSPICION_UNCONFIRMED,True,True,-14.0,5.4,RIGHT,True,True,0.76,True,False,,,
+6,SUSPICION_UNCONFIRMED,True,True,-16.5,6.0,RIGHT,True,True,0.81,True,False,,,
+7,NORMAL_MONITORING,True,True,-10.0,3.0,STRAIGHT,True,True,0.59,False,False,,,
+8,NORMAL_MONITORING,True,True,-7.0,2.0,STRAIGHT,True,True,0.34,False,False,,,
+9,NORMAL_MONITORING,True,True,-5.0,1.4,STRAIGHT,True,True,0.18,False,False,,,
+10,NORMAL_MONITORING,True,True,-4.0,0.9,STRAIGHT,True,True,0.11,False,False,,,

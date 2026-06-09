@@ -1,0 +1,62 @@
+[
+  {
+    "frame_id": 1,
+    "pipeline": {"detected": true, "center_offset_px": -5.0, "orientation_deg": 1.0, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.09},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 2,
+    "pipeline": {"detected": true, "center_offset_px": -6.1, "orientation_deg": 1.7, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.13},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 3,
+    "pipeline": {"detected": true, "center_offset_px": -8.5, "orientation_deg": 2.9, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.28},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 4,
+    "pipeline": {"detected": true, "center_offset_px": -11.0, "orientation_deg": 4.3, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.52},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 5,
+    "pipeline": {"detected": true, "center_offset_px": -14.0, "orientation_deg": 5.4, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.76},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 6,
+    "pipeline": {"detected": true, "center_offset_px": -16.5, "orientation_deg": 6.0, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.81},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 7,
+    "pipeline": {"detected": true, "center_offset_px": -10.0, "orientation_deg": 3.0, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.59},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 8,
+    "pipeline": {"detected": true, "center_offset_px": -7.0, "orientation_deg": 2.0, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.34},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 9,
+    "pipeline": {"detected": true, "center_offset_px": -5.0, "orientation_deg": 1.4, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.18},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 10,
+    "pipeline": {"detected": true, "center_offset_px": -4.0, "orientation_deg": 0.9, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.11},
+    "leak": {"plume_detected": false}
+  }
+]

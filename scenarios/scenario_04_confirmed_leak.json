@@ -1,0 +1,92 @@
+[
+  {
+    "frame_id": 1,
+    "pipeline": {"detected": true, "center_offset_px": -4.0, "orientation_deg": 1.1, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.10},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 2,
+    "pipeline": {"detected": true, "center_offset_px": -5.1, "orientation_deg": 1.8, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.21},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 3,
+    "pipeline": {"detected": true, "center_offset_px": -8.2, "orientation_deg": 3.0, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.44},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 4,
+    "pipeline": {"detected": true, "center_offset_px": -10.4, "orientation_deg": 4.2, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.67},
+    "leak": {"plume_detected": false}
+  },
+  {
+    "frame_id": 5,
+    "pipeline": {"detected": true, "center_offset_px": -13.5, "orientation_deg": 5.3, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.78},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [325, 270],
+      "probable_source": [318, 440],
+      "propagation_direction": "UP"
+    }
+  },
+  {
+    "frame_id": 6,
+    "pipeline": {"detected": true, "center_offset_px": -15.0, "orientation_deg": 5.8, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.84},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [326, 268],
+      "probable_source": [318, 439],
+      "propagation_direction": "UP-RIGHT"
+    }
+  },
+  {
+    "frame_id": 7,
+    "pipeline": {"detected": true, "center_offset_px": -14.0, "orientation_deg": 5.2, "direction": "RIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.89},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [327, 266],
+      "probable_source": [318, 438],
+      "propagation_direction": "UP-RIGHT"
+    }
+  },
+  {
+    "frame_id": 8,
+    "pipeline": {"detected": true, "center_offset_px": -11.0, "orientation_deg": 4.0, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.92},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [328, 264],
+      "probable_source": [318, 438],
+      "propagation_direction": "UP-RIGHT"
+    }
+  },
+  {
+    "frame_id": 9,
+    "pipeline": {"detected": true, "center_offset_px": -9.0, "orientation_deg": 3.1, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.94},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [329, 263],
+      "probable_source": [318, 437],
+      "propagation_direction": "UP-RIGHT"
+    }
+  },
+  {
+    "frame_id": 10,
+    "pipeline": {"detected": true, "center_offset_px": -7.0, "orientation_deg": 2.0, "direction": "STRAIGHT"},
+    "bubble": {"activity_detected": true, "suspicion_score": 0.95},
+    "leak": {
+      "plume_detected": true,
+      "plume_centroid": [330, 262],
+      "probable_source": [318, 437],
+      "propagation_direction": "UP-RIGHT"
+    }
+  }
+]

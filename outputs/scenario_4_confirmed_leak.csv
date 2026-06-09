@@ -1,0 +1,11 @@
+window,system_state,level1_active,pipeline_detected,center_offset_px,orientation_deg,pipeline_direction,level2_active,bubble_activity,suspicion_score,level3_active,plume_detected,plume_centroid,probable_source,propagation_direction
+1,NORMAL_MONITORING,True,True,-4.0,1.1,STRAIGHT,True,True,0.1,False,False,,,
+2,NORMAL_MONITORING,True,True,-5.1,1.8,STRAIGHT,True,True,0.21,False,False,,,
+3,NORMAL_MONITORING,True,True,-8.2,3.0,RIGHT,True,True,0.44,False,False,,,
+4,NORMAL_MONITORING,True,True,-10.4,4.2,RIGHT,True,True,0.67,False,False,,,
+5,LEAK_CONFIRMED,True,True,-13.5,5.3,RIGHT,True,True,0.78,True,True,"[325, 270]","[318, 440]",UP
+6,LEAK_CONFIRMED,True,True,-15.0,5.8,RIGHT,True,True,0.84,True,True,"[326, 268]","[318, 439]",UP-RIGHT
+7,LEAK_CONFIRMED,True,True,-14.0,5.2,RIGHT,True,True,0.89,True,True,"[327, 266]","[318, 438]",UP-RIGHT
+8,LEAK_CONFIRMED,True,True,-11.0,4.0,STRAIGHT,True,True,0.92,True,True,"[328, 264]","[318, 438]",UP-RIGHT
+9,LEAK_CONFIRMED,True,True,-9.0,3.1,STRAIGHT,True,True,0.94,True,True,"[329, 263]","[318, 437]",UP-RIGHT
+10,LEAK_CONFIRMED,True,True,-7.0,2.0,STRAIGHT,True,True,0.95,True,True,"[330, 262]","[318, 437]",UP-RIGHT

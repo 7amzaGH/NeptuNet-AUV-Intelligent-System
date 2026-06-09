@@ -23,6 +23,7 @@
 ★ [Leak Confirmation](https://github.com/7amzaGH/Underwater-Leak-Geometric-Perception) &nbsp;·&nbsp;
 ★ [Master Thesis](docs/NeptuNet_Master_Thesis.pdf) &nbsp;·&nbsp;
 ★ [Research Poster](poster/neptunet_poster.pdf)
+★ [Framework Simulation](#framework-simulation-demo)
 
 <br/>
 
@@ -321,6 +322,8 @@ The notebook generates structured CSV outputs in the `outputs/` directory for do
 | CSV simulation outputs | `outputs/` |
 | Module activation screenshots | `assets/simulation/` |
 
+**Open the full simulation notebook:** [NeptuNet Framework Simulation Demo](notebooks/neptunet_framework_simulation.ipynb)
+
 This demo connects the independent NeptuNet modules at the framework level while keeping each module repository responsible for its own models, datasets, experiments, and evaluation.
 
 ---
@@ -489,6 +492,25 @@ NeptuNet-AUV-Intelligent-System/
 │
 ├── assets/<- Figures and media for this README
 │
+├── integration/
+│   ├── neptunet_orchestrator.py
+│   └── README.md
+│
+├── scenarios/
+│   ├── scenario_01_normal_inspection.json
+│   ├── scenario_02_false_anomaly_return.json
+│   ├── scenario_03_pipeline_reacquisition.json
+│   └── scenario_04_confirmed_leak.json
+│
+├── notebooks/
+│   └── neptunet_framework_simulation.ipynb
+│
+├── outputs/
+│   ├── scenario_01_normal_inspection.csv
+│   ├── scenario_02_false_anomaly_return.csv
+│   ├── scenario_03_pipeline_reacquisition.csv
+│   └── scenario_04_confirmed_leak.csv
+│
 ├── poster/
 │   ├── neptunet_poster.pdf
 │   └── neptunet_poster.png
@@ -521,6 +543,7 @@ NeptuNet focuses on perception-side underwater inspection.
 - INT8 quantization,
 - NPU benchmarking,
 - cross-domain visual evaluation.
+- framework-level perception coordination simulation.
 
 ### Outside the Current Validated Scope
 
