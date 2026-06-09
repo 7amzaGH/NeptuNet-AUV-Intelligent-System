@@ -236,6 +236,95 @@ This strategy avoids treating underwater inspection as a single monolithic detec
 
 ---
 
+## Framework Simulation Demo
+
+NeptuNet includes a lightweight framework-level simulation demo that illustrates how the three perception levels interact during underwater inspection.
+
+The demo uses predefined inspection scenarios to simulate module-level outputs and show how NeptuNet coordinates:
+
+- **Level 1** — continuous pipeline geometric perception,
+- **Level 2** — bubble-based early-warning analysis,
+- **Level 3** — conditional leak confirmation.
+
+This simulation is intentionally limited to **perception-level coordination** and does not claim full underwater robotic autonomy, closed-loop AUV control, underwater SLAM, or real-time onboard deployment.
+
+### Simulation Workflow
+
+```text
+Scenario JSON files
+        ↓
+NeptuNet orchestrator
+        ↓
+Perception-level state decisions
+        ↓
+Notebook tables, timelines, and CSV outputs
+```
+
+The orchestrator follows the NeptuNet resource-aware logic:
+
+```text
+Level 1 is always active
+        ↓
+If the pipeline is detected, Level 2 monitors bubble activity
+        ↓
+If bubble suspicion exceeds the threshold, Level 3 is activated
+        ↓
+The system reports normal monitoring, pipeline search, unconfirmed suspicion, or confirmed leak
+```
+
+### Included Scenarios
+
+Each scenario contains **10 inspection windows**, representing approximately **10 seconds** of inspection.
+
+| Scenario | Purpose | File |
+|---|---|---|
+| Normal inspection | Pipeline visible, bubble monitoring active, no leak suspicion | `scenarios/scenario_01_normal_inspection.json` |
+| False anomaly return | Suspicious bubbles activate leak confirmation, but no plume is confirmed | `scenarios/scenario_02_false_anomaly_return.json` |
+| Pipeline reacquisition | Pipeline is initially not visible, then detected and monitoring resumes | `scenarios/scenario_03_pipeline_reacquisition.json` |
+| Confirmed leak event | Bubble suspicion triggers leak confirmation and a plume is confirmed | `scenarios/scenario_04_confirmed_leak.json` |
+
+### Module Activation Timelines
+
+The following plots summarize the activation behavior of the three NeptuNet levels across the four scenarios.
+
+<p align="center">
+  <img src="assets/scenarios_module_activation.png" alt="Scenario 1 Module Activation Timeline" width="780"/>
+</p>
+
+### Run the Simulation
+
+Clone the repository and open the notebook:
+
+```bash
+git clone https://github.com/7amzaGH/NeptuNet-AUV-Intelligent-System.git
+cd NeptuNet-AUV-Intelligent-System
+jupyter notebook notebooks/01_neptunet_framework_simulation.ipynb
+```
+
+Or run one scenario directly from the command line:
+
+```bash
+python integration/neptunet_orchestrator.py \
+  --scenario scenarios/scenario_04_confirmed_leak.json \
+  --output outputs/scenario_04_confirmed_leak.json
+```
+
+The notebook generates structured CSV outputs in the `outputs/` directory for documentation and further analysis.
+
+### Simulation Artifacts
+
+| Artifact | Location |
+|---|---|
+| Orchestrator script | `integration/neptunet_orchestrator.py` |
+| Scenario JSON files | `scenarios/` |
+| Notebook demo | `notebooks/01_neptunet_framework_simulation.ipynb` |
+| CSV simulation outputs | `outputs/` |
+| Module activation screenshots | `assets/simulation/` |
+
+This demo connects the independent NeptuNet modules at the framework level while keeping each module repository responsible for its own models, datasets, experiments, and evaluation.
+
+---
+
 ## Key Contributions
 
 ### 1. NeptuNet Framework
