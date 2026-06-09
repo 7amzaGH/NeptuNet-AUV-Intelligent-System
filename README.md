@@ -24,6 +24,7 @@
 ★ [Master Thesis](docs/NeptuNet_Master_Thesis.pdf) &nbsp;·&nbsp;
 ★ [Research Poster](poster/neptunet_poster.pdf)
 ★ [Framework Simulation](#framework-simulation-demo)
+★ [C++ Runtime Skeleton](#c-embedded-runtime-skeleton)
 
 <br/>
 
@@ -328,6 +329,73 @@ This demo connects the independent NeptuNet modules at the framework level while
 
 ---
 
+## C++ Embedded Runtime Skeleton
+
+NeptuNet also includes a lightweight **C++ embedded runtime skeleton** that demonstrates how the framework-level coordination logic can be expressed in a deployment-oriented structure.
+
+This component reproduces the same perception-level state machine used in the Python simulation:
+
+```text
+CSV scenario input
+        ↓
+C++ NeptuNet state machine
+        ↓
+Level 1 / Level 2 / Level 3 activation logic
+        ↓
+Perception-level system state output
+```
+
+The C++ runtime does **not** perform neural network inference, underwater robot control, SLAM, underwater physics simulation, or full onboard AUV deployment. It is provided only as a clean embedded-style prototype for the NeptuNet coordination logic.
+
+### Included C++ Scenarios
+
+Each CSV scenario contains **10 inspection windows**, representing approximately **10 seconds** of perception-level inspection behavior.
+
+| Scenario | Purpose | File |
+|---|---|---|
+| Normal inspection | Pipeline visible, bubble monitoring active, no leak suspicion | `cpp_runtime/examples/scenario_01_normal_inspection.csv` |
+| False anomaly return | Suspicious bubbles activate Level 3, but no plume is confirmed | `cpp_runtime/examples/scenario_02_false_anomaly_return.csv` |
+| Pipeline reacquisition | Pipeline is initially not visible, then detected and monitoring resumes | `cpp_runtime/examples/scenario_03_pipeline_reacquisition.csv` |
+| Confirmed leak event | Bubble suspicion activates Level 3 and a plume is confirmed | `cpp_runtime/examples/scenario_04_confirmed_leak.csv` |
+
+### Build and Run
+
+```bash
+cd cpp_runtime
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
+Run a scenario on Linux or Makefile-based builds as:
+
+```bash
+./neptunet_runtime ../examples/scenario_04_confirmed_leak.csv
+```
+
+Run with a custom suspicion threshold:
+
+```bash
+./neptunet_runtime ../examples/scenario_04_confirmed_leak.csv 0.75
+```
+
+
+### C++ Runtime Files
+
+| Artifact | Location |
+|---|---|
+| C++ runtime documentation | `cpp_runtime/README.md` |
+| CMake build file | `cpp_runtime/CMakeLists.txt` |
+| State-machine header | `cpp_runtime/include/neptunet_state_machine.hpp` |
+| State-machine implementation | `cpp_runtime/src/neptunet_state_machine.cpp` |
+| Runtime entry point | `cpp_runtime/src/main.cpp` |
+| Example CSV scenarios | `cpp_runtime/examples/` |
+
+This C++ runtime skeleton complements the Python notebook demo by showing how NeptuNet’s perception coordination logic can be represented in a lightweight embedded-friendly form.
+
+---
+
 ## Key Contributions
 
 ### 1. NeptuNet Framework
@@ -502,6 +570,16 @@ NeptuNet-AUV-Intelligent-System/
 │   ├── scenario_03_pipeline_reacquisition.json
 │   └── scenario_04_confirmed_leak.json
 │
+├── cpp_runtime/
+│   ├── README.md
+│   ├── CMakeLists.txt
+│   ├── include/
+│   │   └── neptunet_state_machine.hpp
+│   ├── src/
+│   │   ├── neptunet_state_machine.cpp
+│   │   └── main.cpp
+│   └── examples/ <- Scenarios csv files
+│
 ├── notebooks/
 │   └── neptunet_framework_simulation.ipynb
 │
@@ -544,6 +622,7 @@ NeptuNet focuses on perception-side underwater inspection.
 - NPU benchmarking,
 - cross-domain visual evaluation.
 - framework-level perception coordination simulation.
+- C++ embedded-style state-machine prototype for perception-level coordination.
 
 ### Outside the Current Validated Scope
 

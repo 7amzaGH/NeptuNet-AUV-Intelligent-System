@@ -1,0 +1,11 @@
+window,pipeline_detected,center_offset_px,orientation_deg,direction,bubble_activity,suspicion_score,plume_detected,plume_centroid_x,plume_centroid_y,probable_source_x,probable_source_y,propagation_direction
+1,1,-5.0,1.0,STRAIGHT,1,0.09,0,,,,,NONE
+2,1,-6.1,1.7,STRAIGHT,1,0.13,0,,,,,NONE
+3,1,-8.5,2.9,RIGHT,1,0.28,0,,,,,NONE
+4,1,-11.0,4.3,RIGHT,1,0.52,0,,,,,NONE
+5,1,-14.0,5.4,RIGHT,1,0.76,0,,,,,NONE
+6,1,-16.5,6.0,RIGHT,1,0.81,0,,,,,NONE
+7,1,-10.0,3.0,STRAIGHT,1,0.59,0,,,,,NONE
+8,1,-7.0,2.0,STRAIGHT,1,0.34,0,,,,,NONE
+9,1,-5.0,1.4,STRAIGHT,1,0.18,0,,,,,NONE
+10,1,-4.0,0.9,STRAIGHT,1,0.11,0,,,,,NONE
