@@ -200,7 +200,7 @@ This module uses **Physics-Guided Diffuse-Texture Separation (PDTS)** to enhance
 
 ### Repository
 
-[PDTS-Underwater-Gas-Leak-Perception](https://github.com/7amzaGH/Underwater-Leak-Geometric-Perception)
+[Underwater-Leak-Geometric-Perception](https://github.com/7amzaGH/Underwater-Leak-Geometric-Perception)
 
 Datasets, PDTS implementation, segmentation training, deployment evaluation, geometry extraction, and result analysis are provided inside the module repository.
 
@@ -502,7 +502,7 @@ To keep this framework repository clean, datasets are documented and linked insi
 |---|---|
 | Pipeline training and external evaluation datasets | [Pipeline Perception Repository](https://github.com/7amzaGH/Underwater-Pipeline-Geometric-Perception) |
 | Bubble plume temporal window datasets | [TUBLEX Bubble Monitoring Repository](https://github.com/7amzaGH/TUBLEX-Bubble-Plume-Analysis) |
-| Gas plume training and real evaluation datasets | [PDTS Leak Confirmation Repository](https://github.com/7amzaGH/PDTS-Underwater-Gas-Leak-Perception) |
+| Gas plume training and real evaluation datasets | [PDTS Leak Confirmation Repository](https://github.com/7amzaGH/Underwater-Leak-Geometric-Perception) |
 
 This organization avoids duplication and keeps each dataset connected to its code, experiments, and evaluation protocol.
 
